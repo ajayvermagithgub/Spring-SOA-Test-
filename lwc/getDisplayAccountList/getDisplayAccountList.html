@@ -1,0 +1,39 @@
+<!--
+    @File Name          : getDisplayAccountList.html
+    @Description        : Build a component for displaying an account list. 
+    @Author             : Ajay verma 
+    @Last Created By   : Ajay verma
+    @Last Created On   : 27-04-2023
+    @Last Modify By   : .
+    @Last Modify On  : 
+    Ver       Date            Author      		    Modification
+    1.0    27-04-2023   Ajay verma     Initial Version
+-->
+<template>
+    <lightning-card title="Accounts" icon-name="custom:custom63">  
+        <div class="slds-m-around_medium">  
+            <template if:false={isLoaded}>
+                <div class="spinner_class_div">
+                    <lightning-spinner class="spinner_class" alternative-text="Loading" variant="brand">
+                    </lightning-spinner>
+                </div>
+            </template>
+            <div style="height: 500px;">
+            <template if:true={availableAccounts}>      
+                <lightning-datatable
+                    key-field="Id"
+                    data={availableAccounts}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    show-row-number-column="true"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>  
+            </template> 
+            </div>  
+            <!--When records are not displaying-->   
+            <template if:true={error}>  
+                {error}>                  
+            </template>  
+        </div>  
+    </lightning-card>
+</template>
